@@ -1,0 +1,21 @@
+{
+  "name": "mymdules",
+  "version": "1.0.0",
+  "description": "demo",
+  "main": "a.js",
+  "dependencies": {
+    "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "webpack": "^2.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "react"
+  ],
+  "author": "newming",
+  "license": "ISC"
+}
