@@ -8,8 +8,9 @@
 // console.log(http);
 
 // 2.
-// var $ = require('jquery');
+var $ = require('newming');
 // console.log($);
+console.log($(5,9));
 
 // 3.
 // var num = require('./b.js');
