@@ -43,9 +43,53 @@
 // say('newming')
 
 // rest
-function restFunc(a, ...argu) {
-  console.log(a)
-  console.log(argu)
-}
-// restFunc(1);
-restFunc(1, 2, 3, '4');
+// function restFunc(a, ...argu) {
+//   console.log(a)
+//   console.log(argu)
+// }
+// // restFunc(1);
+// restFunc(1, 2, 3, '4');
+
+//将所有参数相加的函数
+// function add(...x){
+//   return x.reduce( (m,n) => m+n );
+// }
+//传递任意个数的参数
+// console.log(add(1,2,3));
+// console.log(add(5,5,5,5,5,45465));
+
+// let result = [1,2,3].reduce(function (x,y) {
+//   return x*y
+// })
+// console.log(result);
+
+// 展开操作符
+// let arr = [1,2,3];
+// let arr1 = [4,5,6];
+// arr2 = [1,2,3,4,5,6]
+
+// let arr2 = [...arr,...arr1,88,...arr1];
+// console.log(arr2);
+
+
+// map
+// let arr = [7,8,9,10];
+//
+// let newArr = arr.map(function (item) {
+//   console.log(item);
+//   return item*2
+// })
+// console.log(newArr);
+//
+// let news = [
+//   {title: '今天天气号', author: 'newming'},
+//   {title: '今天天气号', author: 'newming'},
+//   {title: '今天天气号', author: 'newming'}
+// ]
+//
+// let newsList = news.map( item => item.title )
+// console.log(newsList);
+
+// forEach
+let arr = [5,8,66];
+arr.forEach( item => console.log(item) )
