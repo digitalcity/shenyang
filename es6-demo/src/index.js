@@ -67,7 +67,7 @@
 // let arr = [1,2,3];
 // let arr1 = [4,5,6];
 // arr2 = [1,2,3,4,5,6]
-
+//
 // let arr2 = [...arr,...arr1,88,...arr1];
 // console.log(arr2);
 
@@ -91,5 +91,74 @@
 // console.log(newsList);
 
 // forEach
-let arr = [5,8,66];
-arr.forEach( item => console.log(item) )
+// let arr = [5,8,66];
+// arr.forEach( item => console.log(item) )
+
+// 原型
+// function Cat(name) {
+//   this.name = name;
+//   this.say = function () {
+//     console.log(this.name);
+//   }
+//
+// }
+//
+// Cat.prototype.run = function () {
+//   console.log('run');
+// };
+//
+// function Mimi() {
+//   this.jump = function () {
+//     console.log('jump');
+//   }
+// }
+//
+// Mimi.prototype = new Cat('Mimi');
+//
+// var cat = new Mimi();
+// console.log(cat);
+// cat.run()
+// cat.jump()
+
+// class
+// 类里边通常只可以写一个个的方法，方法和方法之间不可以有符号连接
+// 类里边定义属性要写到constructor方法内，这个方法是类默认带的，它会在实例化它的时候自动执行
+// class People {
+//   constructor(){
+//     this.eyes = 2;
+//   }
+//   say(){
+//     console.log('say');
+//   }
+// }
+//
+// class Male extends People {
+//   constructor(){
+//     super();
+//     this.huzi = true;
+//   }
+//   jump(){
+//     console.log('jump');
+//   }
+// }
+//
+// class Famale extends People {
+//   constructor(){
+//     super();
+//     this.hair = true;
+//   }
+// }
+//
+// var ming = new Male();
+// console.log(ming.eyes,ming.huzi);
+// ming.jump()
+// var xiaohong = new Famale();
+// console.log(xiaohong.eyes,xiaohong.hair);
+
+// module,第一种命名导出导入，第二种默认导出
+// import {sum,str} from './test.js';
+// console.log(str);
+// sum()
+
+import xxx from './test.js';
+console.log(xxx);
