@@ -1,0 +1,22 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/*body{
+  background-image: url(./images/bg.jpg);
+}*/
+.clearfix::before,.clearfix::after{
+  display: block;
+  content: ' ';
+}
+.clearfix::after{
+  clear: both;
+}
+
+.container{
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.3);
+}
