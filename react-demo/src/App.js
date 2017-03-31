@@ -1,23 +1,39 @@
 import React from 'react';
 
-// import Tabs from './Tabs';
-// import Humb from './Humb';
-import Collapse from './Collapse';
+// import Btn from './Btn';
+// import Card from './Card';
+// import CardList from './CardList';
+import Childrer from './Children.js';
+
+// let data = [
+//   {index:1,title: '第一天的标题',date: '2017.3.30'},
+//   {index:1,title: '第一天的标题',date: '2017.3.30'},
+//   {index:1,title: '第一天的标题',date: '2017.3.30'},
+//   {index:1,title: '第一天的标题',date: '2017.3.30'},
+//   {index:1,title: '第一天的标题',date: '2017.3.30'}
+// ]
 
 class App extends React.Component{
   render(){
     return(
       <div>
-        {/* <Tabs /> */}
-        {/* <Humb /> */}
-        <Collapse />
+        {/* <Btn label='aaaaa'/> */}
+        {/* {
+          data.map( (item,i) => <Card key={i} {...item} /> )
+        } */}
+
+        {/* <CardList data={data}/> */}
+
+        <Childrer name='newming'>
+          <div>aaaa</div>
+          <div>aaaa</div>
+          <div>aaaa</div>
+        </Childrer>
       </div>
     )
   }
 }
 
 export default App;
-
-// state 管理组件内部的数据、状态
-// 状态变，会触发react组件重新渲染
-// 修改state需要用setState这个方法，否则不会触发重新渲染，不会更新界面
+// state,props,lifecycle
+// Component

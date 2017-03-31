@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import Test from './Test.js';
 
 class Collapse extends React.Component{
@@ -15,9 +14,8 @@ class Collapse extends React.Component{
     }
   }
   modal(){
-    this.refs.test.handleShow()
-    let xxx = this.refs.input;
-    console.log($(xxx).val());
+    // this.modal.handleShow();
+    console.log(this.inputaaa);
   }
   handleShow(i){
     let data = this.state.data;
@@ -34,9 +32,9 @@ class Collapse extends React.Component{
     return(
       <div>
         {doms}
-        <Test ref='test'/>
+        <Test ref={ modal => this.modal = modal }/>
         <button onClick={this.modal.bind(this)}>模态</button>
-        <input ref='input'/>
+        <input ref={ cc => this.inputaaa=cc }/>
       </div>
     )
   }
