@@ -7,9 +7,8 @@ class App extends React.Component{
     super();
     this.state={
       input: '',
-      data: [
-        {title: 'aaa', completed: true}
-      ]
+      data: [],
+      show: 'ALL'
     }
   }
   handleCompleted(index){
@@ -38,6 +37,18 @@ class App extends React.Component{
     this.setState({input: ''})
   }
   render(){
+    let showData;
+    switch (this.state.show) {
+      case 'ALL': showData = this.state.data; break;
+      case 'ACTIVE':
+        showData = this.state.data.filter( item => !item.completed );
+        break;
+      case 'COMPLETED':
+        showData = this.state.data.filter( item => item.completed );
+        break;
+      default:
+        showData = this.state.data;
+    }
     return(
       <div className='container'>
         <h1 className="text-center">TODO</h1>
@@ -52,13 +63,13 @@ class App extends React.Component{
 
         <br />
 
-        <TodoList data={this.state.data} handleCompleted={this.handleCompleted.bind(this)} handleRemove={this.handleRemove.bind(this)}/>
+        <TodoList data={showData} handleCompleted={this.handleCompleted.bind(this)} handleRemove={this.handleRemove.bind(this)}/>
 
         <div>
           分类：
-          <button type="button" className="btn btn-default">All</button>
-          <button type="button" className="btn btn-primary">Active</button>
-          <button type="button" className="btn btn-default">Compoted</button>
+          <button type="button" className="btn btn-default" onClick={()=>this.setState({show: 'ALL'})}>All</button>
+          <button type="button" className="btn btn-default" onClick={()=>this.setState({show: 'ACTIVE'})}>Active</button>
+          <button type="button" className="btn btn-default" onClick={()=>this.setState({show: 'COMPLETED'})}>Compoted</button>
         </div>
       </div>
     )
