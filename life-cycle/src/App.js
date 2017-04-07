@@ -30,7 +30,7 @@ class App extends React.Component{
           <div className="input-group">
               <input type="text" className="form-control" placeholder="add todo..." value={this.state.input} onChange={ (e) => this.setState({input: e.target.value}) } ref='input'/>
               <span className="input-group-btn">
-                <button className="btn btn-default" type="submit">Add</button>
+                <button className="btn btn-default" type="submit">Add {this.state.data.length}</button>
               </span>
           </div>
         </form>
@@ -38,6 +38,13 @@ class App extends React.Component{
         <br />
 
         <TodoList data={this.state.data} />
+
+        <div>
+          分类：
+          <button type="button" className="btn btn-default">All</button>
+          <button type="button" className="btn btn-primary">Active</button>
+          <button type="button" className="btn btn-default">Compoted</button>
+        </div>
       </div>
     )
   }
