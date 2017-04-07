@@ -8,28 +8,37 @@ class App extends React.Component{
     this.state={
       input: '',
       data: [],
-      show: 'ALL'
+      show: 'ALL',
+      type: ['ALL', 'ACTIVE', 'COMPLETED']
     }
   }
-  handleCompleted(index){
+  componentWillMount(){
+    this.setState({data: JSON.parse(localStorage.todos || '[]' ) })
+  }
+  handleCompleted(id){
     let newData = this.state.data;
+    let index = newData.findIndex( item => item.id === id )
     newData[index].completed = !newData[index].completed;
     this.setState({data: newData});
+    localStorage.setItem('todos', JSON.stringify(newData))
   }
-  handleRemove(index){
+  handleRemove(id){
     let r = confirm('确定删除吗？')
     if (r) {
       let newData = this.state.data;
+      let index = newData.findIndex( item => item.id === id )
       newData.splice(index, 1)
       this.setState({data: newData});
+      localStorage.setItem('todos', JSON.stringify(newData))
     }
   }
   handleSubmit(e){
     e.preventDefault();
     if (this.state.input.trim()) {
       this.setState({
-        data: [...this.state.data,{title: this.state.input.trim(), completed: false}]
+        data: [...this.state.data,{title: this.state.input.trim(), completed: false, id: Date.now()}]
       });
+      localStorage.setItem( 'todos', JSON.stringify([...this.state.data,{title: this.state.input.trim(), completed: false, id: Date.now()}]) )
     }else {
       alert('请输入内容')
       this.refs.input.focus()
@@ -67,9 +76,12 @@ class App extends React.Component{
 
         <div>
           分类：
-          <button type="button" className="btn btn-default" onClick={()=>this.setState({show: 'ALL'})}>All</button>
-          <button type="button" className="btn btn-default" onClick={()=>this.setState({show: 'ACTIVE'})}>Active</button>
-          <button type="button" className="btn btn-default" onClick={()=>this.setState({show: 'COMPLETED'})}>Compoted</button>
+          {
+            this.state.type.map( (item,index) =>
+              <button type="button" className={`btn ${this.state.show===item ? 'btn-primary' : 'btn-default'}`} onClick={()=>this.setState({show: item})} key={index}>{item}</button>
+            )
+          }
+
         </div>
       </div>
     )
@@ -77,3 +89,7 @@ class App extends React.Component{
 }
 
 export default App;
+
+// localStorage
+
+// getItem, setItem, removeItem
