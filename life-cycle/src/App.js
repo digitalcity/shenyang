@@ -7,7 +7,22 @@ class App extends React.Component{
     super();
     this.state={
       input: '',
-      data: []
+      data: [
+        {title: 'aaa', completed: true}
+      ]
+    }
+  }
+  handleCompleted(index){
+    let newData = this.state.data;
+    newData[index].completed = !newData[index].completed;
+    this.setState({data: newData});
+  }
+  handleRemove(index){
+    let r = confirm('确定删除吗？')
+    if (r) {
+      let newData = this.state.data;
+      newData.splice(index, 1)
+      this.setState({data: newData});
     }
   }
   handleSubmit(e){
@@ -37,7 +52,7 @@ class App extends React.Component{
 
         <br />
 
-        <TodoList data={this.state.data} />
+        <TodoList data={this.state.data} handleCompleted={this.handleCompleted.bind(this)} handleRemove={this.handleRemove.bind(this)}/>
 
         <div>
           分类：
