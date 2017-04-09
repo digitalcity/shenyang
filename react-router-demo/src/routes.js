@@ -4,6 +4,7 @@ import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import App from './App';
 import Home from './Home';
 import Topic from './Topic';
+import UserInfo from './component/UserInfo';
 
 function Routers() {
   return(
@@ -11,6 +12,7 @@ function Routers() {
       <Route path='/' component={App}>
         <IndexRoute component={Home}/>
         <Route path='topic/:id' component={Topic}/>
+        <Route path='user/:loginname' component={UserInfo}/>
       </Route>
     </Router>
   )

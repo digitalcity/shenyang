@@ -15,7 +15,7 @@ class Home extends React.Component{
       type: 'GET',
       url: 'https://cnodejs.org/api/v1/topics',
       success: function (response) {
-        console.log(response);
+        // console.log(response);
         _this.setState({data: response.data})
       },
       error: function () {
@@ -45,7 +45,7 @@ class Home extends React.Component{
           {
             this.state.data.map( item =>
               <div key={item.id}>
-                <img src={item.author.avatar_url} alt='img' style={{width: '30px', height: '30px'}}/>
+                <Link to={`user/${item.author.loginname}`}><img src={item.author.avatar_url} alt='img' style={{width: '30px', height: '30px'}}/></Link>
                 <span>{item.reply_count}/{item.visit_count} </span>
                 <span style={{background:'#00bcd4'}}> {item.top? '置顶' : item.tab}</span>
                 <Link to={`/topic/${item.id}`}> {item.title}</Link>
