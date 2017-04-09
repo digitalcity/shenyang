@@ -1,11 +1,17 @@
 import React from 'react';
 
+import Header from './component/Header.js';
+import Footer from './component/Footer.js';
+
 class App extends React.Component{
   render(){
     return(
       <div>
-        <h1>cnode中文社区盗版</h1>
+        <Header />
+
         {this.props.children}
+
+        <Footer />
       </div>
     )
   }
