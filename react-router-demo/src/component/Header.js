@@ -2,6 +2,7 @@ import React from 'react';
 
 import $ from 'jquery';
 import {Link} from 'react-router';
+import axios from 'axios';
 
 class Header extends React.Component{
   constructor(){
@@ -15,25 +16,30 @@ class Header extends React.Component{
   }
   handleSubmit(e){
     e.preventDefault();
-    let _this = this;
+    // let _this = this;
     let data = {accesstoken: this.state.accesstoken};
-    $.ajax({
-      type: 'POST',
-      url: 'https://cnodejs.org/api/v1/accesstoken',
-      contentType: 'application/json',
-      data: JSON.stringify(data),
-      success: function (response) {
-        console.log(response);
-        _this.setState({
-          login: true,
-          loginname: response.loginname,
-          avatar_url: response.avatar_url
-        })
-      },
-      error: function () {
-        alert('登陆失败')
-      }
-    })
+    axios.post('https://cnodejs.org/api/v1/accesstoken', data)
+      .then( res => {
+        console.log(res);
+        this.setState({ login: true, loginname: res.data.loginname, avatar_url: res.data.avatar_url })
+      })
+    // $.ajax({
+    //   type: 'POST',
+    //   url: 'https://cnodejs.org/api/v1/accesstoken',
+    //   contentType: 'application/json',
+    //   data: JSON.stringify(data),
+    //   success: function (response) {
+    //     console.log(response);
+    //     _this.setState({
+    //       login: true,
+    //       loginname: response.loginname,
+    //       avatar_url: response.avatar_url
+    //     })
+    //   },
+    //   error: function () {
+    //     alert('登陆失败')
+    //   }
+    // })
   }
   render(){
     return(
