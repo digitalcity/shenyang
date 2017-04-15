@@ -1,0 +1,23 @@
+@blue: #00bcd4;
+@opacity: 1;
+@aa: 50%;
+@num: 125;
+
+.box{
+  width: 100%;
+  .img{
+    width: 100%;
+  }
+}
+
+h1{
+  opacity: @opacity*0.7;
+  &:hover{
+    color: @blue;
+  }
+}
+#test{
+  width: 100px;
+  height: 100px;
+  background-color: rgba(@num, @num, @num, @aa);
+}
