@@ -5,8 +5,14 @@ module.exports={
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, "build"),
-    publicPath: "./build/",
+    publicPath: "/build/",
     filename: 'bundle.js'
+  },
+  devServer: {
+    port: 3000,
+    // contentBase: path.join(__dirname, "src"),
+    historyApiFallback: true,
+    hot: true
   },
   watch: true,
   devtool: "source-map",
@@ -25,6 +31,10 @@ module.exports={
         warnings: false,
         drop_console: false,
       }
-    })
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"production"',
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
