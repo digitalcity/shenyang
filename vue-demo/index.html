@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <div v-html="hello" :class='message'></div>
+    <button v-bind:disabled="condition">Button</button>
+    <h1>数量是：{{ num + 100 }}条件是{{ condition ? '真' : '假'}} {{Math.random()}}</h1>
+    <p v-if='condition'>if如果是真才会显示，否则不显示</p>
+    <p v-show='condition'>show如果是真才会显示，否则不显示</p>
+    <h1 v-if="condition">Yes</h1>
+    <h1 v-else>No</h1>
+
+    <template v-if="condition">
+      <h1 v-on:click='handleClick'>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'active',
+        hello: '<p>hello</p>',
+        condition: true,
+        num: 46
+      },
+      mounted: function () {
+        console.log('mounted');
+      },
+      methods: {
+        handleClick: function () {
+          alert('aaa')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

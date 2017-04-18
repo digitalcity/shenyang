@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  [v-cloak] {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p v-cloak>{{msg | upCase}}</p>
+    <input v-model="msg" placeholder="edit me">
+    <p>数量是{{num | yuan}},总价是{{result}}</p>
+    <button v-on:click='sum(1)'>+1</button>
+    <button v-on:click='sum(-1)'>-1</button>
+    <a href="http://baidu.com" @click.prevent="doThis">百度</a>
+    <input @keyup.delete="submit">
+
+    <p v-bind:class='msg'>aaaa</p>
+    <p v-bind:class='{active: isActive}'>aaaa</p>
+
+    <div>
+      <h1 v-for='(item,index) in arr'>第{{index}}条是：{{item}}</h1>
+    </div>
+
+
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        num: 0,
+        msg: 'hello',
+        isActive: true,
+        arr: ['aaaa','bbb','ccc']
+      },
+      methods: {
+        sum(val){
+          this.num+=val
+        },
+        doThis(){
+          alert('不让你跳转')
+        },
+        submit(){
+          alert('你敲了删除键')
+        }
+      },
+      computed: {
+        result: function () {
+          return this.num*100
+        }
+      },
+      filters: {
+        yuan: function (value) {
+          return value+'个'
+        },
+        upCase: function (value) {
+          return value.toLocaleUpperCase()
+        }
+      }
+    })
+
+    // 事件(v-on)，属性绑定(v-bind)，指令(v-if,v-show)，循环(v-for)，计算computed，过滤器filters，生命周期，v-model
+  </script>
+</body>
+</html>

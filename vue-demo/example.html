@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>单价</th>
+          <th>数量</th>
+          <th>小计</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for='item in books'>
+          <td>{{item.title}}</td>
+          <td>{{item.price}}</td>
+          <td>{{item.num}}</td>
+          <td>{{item.price*item.num | yuan}}</td>
+          <td><button @click='remove(item.id)' class="btn btn-danger">删除</button></td>
+        </tr>
+        <tr>
+          <td colspan="5">总价钱：{{total | yuan}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <form @submit.prevent='add'>
+      <div class="form-group">
+        <label for="name">书名</label>
+        <input v-model='book.title' type="text" class="form-control" id="name" placeholder="name">
+      </div>
+      <div class="form-group">
+        <label for="price">单价</label>
+        <input v-model='book.price' type="number" class="form-control" id="price" placeholder="单价">
+      </div>
+      <div class="form-group">
+        <label for="num">数量</label>
+        <input v-model='book.num' type="number" class="form-control" id="num" placeholder="数量">
+      </div>
+      <button type="submit" class="btn btn-default" class="btn btn-primary">添加</button>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '.container',
+      data: {
+        books: [
+          // {title: 'nodejs', price: 15, num: 10, id: 1},
+          // {title: 'nodejs', price: 15, num: 10, id: 2},
+          // {title: 'nodejs', price: 15, num: 10, id: 3},
+          // {title: 'nodejs', price: 15, num: 10, id: 4}
+        ],
+        book: {title: '', price: 0, num: 0}
+      },
+      methods: {
+        add(){
+          let newItem = this.book;
+          newItem.id = Date.now();
+          this.books = [...this.books, newItem];
+          this.book = {title: '', price: 0, num: 0}
+        },
+        remove: function (id) {
+          this.books = this.books.filter( item => id !== item.id )
+        }
+      },
+      computed: {
+        total: function () {
+          var sum=0;
+          this.books.forEach(function (item) {
+            sum += item.price * item.num
+          })
+          return sum
+        }
+      },
+      filters: {
+        yuan: function (value) {
+          return value + '元'
+        }
+      }
+    })
+  </script>
+</body>
+</html>
